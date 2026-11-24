@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Pain Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>Pain Detection</h2>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/live" class="nav-link">Live Detection</a>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Facial Pain Detection System</h1>
+            <p>Real-time pain detection using computer vision and deep learning</p>
+        </header>
+
+        <div class="options">
+            <div class="option-card">
+                <h2>Live Detection</h2>
+                <p>Start real-time pain detection using your webcam or DroidCam</p>
+                <a href="/live" class="btn btn-primary">Start Live Detection</a>
+            </div>
+
+            <div class="option-card">
+                <h2>Upload Image</h2>
+                <p>Upload an image to analyze for pain detection</p>
+                <div class="upload-section">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <button onclick="document.getElementById('imageInput').click()" class="btn btn-secondary">Choose Image</button>
+                    <button id="analyzeBtn" class="btn btn-primary" disabled>Analyze</button>
+                </div>
+                <div id="imagePreviewContainer" style="text-align: center; margin-top: 20px;">
+                    <img id="imagePreview" alt="Selected image preview" style="display: none; max-width: 100%; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
+        </div>
+
+        <div id="results" class="results" style="display: none;">
+            <h3>Analysis Results</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

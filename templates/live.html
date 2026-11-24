@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Pain Detection - Advanced AI System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>Pain Detection</h2>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/live" class="nav-link active">Live Detection</a>
+            </div>
+        </nav>
+
+        <header class="fade-in">
+            <h1><i class="fas fa-video"></i> Live Pain Detection</h1>
+            <p>Real-time pain analysis using advanced AI and computer vision technology</p>
+        </header>
+
+        <div class="video-section">
+            <div id="videoContainer">
+                <video id="videoElement" autoplay playsinline muted></video>
+                <canvas id="canvasElement"></canvas>
+                <div id="overlay" style="display: none;">
+                    <div class="detection-overlay">
+                        <i class="fas fa-crosshairs"></i>
+                        <span>Detecting...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn">
+                <i class="fas fa-play"></i> Start Detection
+            </button>
+            <button id="stopBtn" class="btn btn-secondary" disabled>
+                <i class="fas fa-stop"></i> Stop Detection
+            </button>
+            <button id="fullscreenBtn" class="btn" onclick="toggleFullscreen()">
+                <i class="fas fa-expand"></i> Fullscreen
+            </button>
+        </div>
+
+        <div class="status-section">
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span id="statusText">Ready to start</span>
+            </div>
+
+            <div class="results-panel" id="resultsPanel" style="display: none;">
+                <h3><i class="fas fa-chart-line"></i> Real-time Analysis</h3>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <div class="metric-label">Pain Level</div>
+                        <div class="metric-value" id="painLevel">--</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Confidence</div>
+                        <div class="metric-value" id="confidence">--</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Faces Detected</div>
+                        <div class="metric-value" id="faceCount">--</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">FPS</div>
+                        <div class="metric-value" id="fps">--</div>
+                    </div>
+                </div>
+                <div id="detailedResults"></div>
+            </div>
+        </div>
+
+        <!-- Instructions Panel -->
+        <div class="instructions-panel">
+            <h3><i class="fas fa-info-circle"></i> Instructions</h3>
+            <ul>
+                <li>Ensure good lighting for accurate detection</li>
+                <li>Position your face clearly in the camera view</li>
+                <li>The system analyzes facial expressions in real-time</li>
+                <li>Results update continuously as expressions change</li>
+            </ul>
+        </div>
+
+        <!-- Alert System -->
+        <div id="alertSystem" style="display: none;">
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="alertMessage">Pain detected! Please seek medical attention if needed.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='live.js') }}"></script>
+</body>
+</html>
